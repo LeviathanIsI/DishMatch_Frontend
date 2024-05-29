@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Recipes from './pages/Recipes';
 import Matching from './pages/Matching';
+import MatchedRecipes from './pages/MatchedRecipes'; // Import the new page
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/matching" element={<Matching />} />
+            <Route path="/matched-recipes" element={<MatchedRecipes />} /> {/* New Route */}
           </Routes>
         </main>
       </div>

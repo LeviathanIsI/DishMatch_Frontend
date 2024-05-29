@@ -2,22 +2,26 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
 import Recipes from './pages/Recipes';
-import MatchingScreen from './pages/MatchingScreen';
+import Matching from './pages/Matching';
+import MatchedRecipes from './pages/MatchedRecipes'; // Import the new page
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const AppRouter = () => {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/recipes" element={<Recipes />} />
-        <Route path="/matching" element={<MatchingScreen />} />
-      </Routes>
+      <div className="container mx-auto mt-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/matching" element={<Matching />} />
+          <Route path="/matched-recipes" element={<MatchedRecipes />} /> {/* New Route */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
     </Router>
   );
 };

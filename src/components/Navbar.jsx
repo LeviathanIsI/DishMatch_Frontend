@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-800 dark:bg-gray-900">
-      <div className="container mx-auto flex justify-between items-center py-4">
-        <ul className="flex space-x-4">
-          <li><Link to="/" className="text-gray-200 hover:text-yellow-500">Home</Link></li>
-          <li><Link to="/register" className="text-gray-200 hover:text-yellow-500">Register</Link></li>
-          <li><Link to="/login" className="text-gray-200 hover:text-yellow-500">Login</Link></li>
-          <li><Link to="/recipes" className="text-gray-200 hover:text-yellow-500">Recipes</Link></li>
-          <li><Link to="/matching" className="text-gray-200 hover:text-yellow-500">Matching</Link></li>
-        </ul>
+    <nav className="bg-gray-800 p-4">
+      <div className="container mx-auto flex justify-between">
+        <div className="text-white text-lg">
+          <Link to="/">DishMatch</Link>
+        </div>
+        <div className="flex space-x-4">
+          <Link to="/recipes" className="text-white">Recipes</Link>
+          <Link to="/matching" className="text-white">Matching</Link>
+          <Link to="/matched-recipes" className="text-white">Matched Recipes</Link> {/* New Route */}
+          <Link to="/login" className="text-white">Login</Link>
+          <Link to="/register" className="text-white">Register</Link>
+        </div>
       </div>
     </nav>
   );
