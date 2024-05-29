@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import apiFetch from '../api/fetch';
 
-const Recipes = () => {
+const MyRecipes = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const Recipes = () => {
   );
 };
 
-export default Recipes;
+export default MyRecipes;
