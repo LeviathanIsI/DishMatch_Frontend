@@ -6,25 +6,23 @@ const Recipes = () => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      try {
-        const response = await apiFetch('/recipes', {
-          method: 'GET',
-        });
-        setRecipes(response);
-      } catch (error) {
-        console.error(error);
-      }
+      const response = await apiFetch('/recipes');
+      setRecipes(response);
     };
-
     fetchRecipes();
   }, []);
 
   return (
     <div>
-      <h1>Recipes</h1>
+      <h2 className="text-2xl mb-4">Recipes</h2>
       <ul>
-        {recipes.map(recipe => (
-          <li key={recipe._id}>{recipe.name} by {recipe.creator.username}</li>
+        {recipes.map((recipe) => (
+          <li key={recipe._id} className="card p-4 mb-4">
+            <h3 className="card-title">{recipe.name}</h3>
+            <p>{recipe.cuisine}</p>
+            <p>{recipe.ingredients.join(', ')}</p>
+            <p>Created by: {recipe.creator ? recipe.creator.username : 'Unknown'}</p>
+          </li>
         ))}
       </ul>
     </div>

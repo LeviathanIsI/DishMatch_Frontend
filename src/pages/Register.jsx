@@ -28,34 +28,43 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Register</button>
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl mb-4">Register</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="input-field">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+            className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
+          />
+        </div>
+        <div className="input-field">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            required
+            className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
+          />
+        </div>
+        <div className="input-field">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
+          />
+        </div>
+        <button type="submit" className="btn w-full py-2 rounded bg-yellow-500 text-gray-900 hover:bg-yellow-400">Register</button>
       </form>
       {message && (
-        <p style={{ color: messageType === 'success' ? 'green' : 'red' }}>
+        <p className={messageType === 'success' ? 'green-text mt-4' : 'red-text mt-4'}>
           {message}
         </p>
       )}

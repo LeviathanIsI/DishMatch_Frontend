@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Recipes from './pages/Recipes';
+import MatchingScreen from './pages/MatchingScreen';
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/matching" element={<MatchingScreen />} />
       </Routes>
     </Router>
   );
