@@ -9,7 +9,7 @@ const Navbar = () => {
           <Link to="/">DishMatch</Link>
         </div>
         <div className="flex space-x-4">
-          <Link to="/recipes" className="text-white">Recipes</Link>
+          <Link to="/myrecipes" className="text-white">Recipes</Link>
           <Link to="/matching" className="text-white">Matching</Link>
           <Link to="/matched-recipes" className="text-white">Matched Recipes</Link> {/* New Route */}
           <Link to="/login" className="text-white">Login</Link>

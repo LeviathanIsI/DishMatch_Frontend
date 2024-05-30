@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import Recipes from './pages/MyRecipes';
+import MyRecipes from './pages/MyRecipes';
 import Matching from './pages/Matching';
 import MatchedRecipes from './pages/MatchedRecipes'; // Import the new page
 
@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/recipes" element={<Recipes />} />
+            <Route path="/myrecipes" element={<MyRecipes />} />
             <Route path="/matching" element={<Matching />} />
             <Route path="/matched-recipes" element={<MatchedRecipes />} /> {/* New Route */}
           </Routes>
