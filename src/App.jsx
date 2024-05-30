@@ -1,12 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import MyRecipes from './pages/MyRecipes';
-import Matching from './pages/Matching';
-import MatchedRecipes from './pages/MatchedRecipes'; // Import the new page
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import MyRecipes from "./pages/MyRecipes";
+import Matching from "./pages/Matching";
+import MatchedRecipes from "./pages/MatchedRecipes";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -18,9 +19,30 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/myrecipes" element={<MyRecipes />} />
-            <Route path="/matching" element={<Matching />} />
-            <Route path="/matched-recipes" element={<MatchedRecipes />} /> {/* New Route */}
+            <Route
+              path="/myrecipes"
+              element={
+                <ProtectedRoute>
+                  <MyRecipes />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/matching"
+              element={
+                <ProtectedRoute>
+                  <Matching />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/matched-recipes"
+              element={
+                <ProtectedRoute>
+                  <MatchedRecipes />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </main>
       </div>

@@ -1,25 +1,32 @@
-import React, { useState } from 'react';
-import apiFetch from '../api/fetch';
+import React, { useState, useContext } from "react";
+import apiFetch from "../api/fetch";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // 'success' or 'error'
+
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await apiFetch('/users/login', {
-        method: 'POST',
+      const response = await apiFetch("/users/login", {
+        method: "POST",
         body: JSON.stringify({ email, password }),
       });
-      localStorage.setItem('token', response.token);
-      setMessageType('success');
-      setMessage('User authenticated successfully!');
+      localStorage.setItem("token", response.token);
+      login(response.token, response.username);
+      setMessageType("success");
+      setMessage("User authenticated successfully!");
+      navigate("/myrecipes");
     } catch (error) {
-      setMessageType('error');
-      setMessage('Error authenticating user: ' + error.message);
+      setMessageType("error");
+      setMessage("Error authenticating user: " + error.message);
     }
   };
 
@@ -47,10 +54,19 @@ const Login = () => {
             className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
           />
         </div>
-        <button type="submit" className="btn w-full py-2 rounded bg-yellow-500 text-gray-900 hover:bg-yellow-400">Login</button>
+        <button
+          type="submit"
+          className="btn w-full py-2 rounded bg-yellow-500 text-gray-900 hover:bg-yellow-400"
+        >
+          Login
+        </button>
       </form>
       {message && (
-        <p className={messageType === 'success' ? 'green-text mt-4' : 'red-text mt-4'}>
+        <p
+          className={
+            messageType === "success" ? "green-text mt-4" : "red-text mt-4"
+          }
+        >
           {message}
         </p>
       )}
