@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      console.log("Decoded Token:", decodedToken); // Add this line
+      console.log("Decoded Token:", decodedToken);
       setUsername(decodedToken.username);
       setIsAuthenticated(true);
     }

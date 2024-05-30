@@ -6,7 +6,7 @@ const MyRecipes = () => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const response = await apiFetch("/recipes");
+      const response = await apiFetch("/recipes/my-recipes");
       setRecipes(response);
     };
     fetchRecipes();

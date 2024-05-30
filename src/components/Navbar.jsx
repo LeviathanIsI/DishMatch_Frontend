@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const { isAuthenticated, username, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
   };
 
   return (
@@ -29,9 +27,12 @@ const Navbar = () => {
           </Link>
           {isAuthenticated ? (
             <>
+              <Link to="/create-recipe" className="text-white">
+                Create Recipe
+              </Link>
               <span className="text-white">
                 Welcome,{" "}
-                <span className="text-yellow-500 font-bold">{username}</span>
+                <span className="font-bold text-yellow-500">{username}</span>
               </span>
               <button onClick={handleLogout} className="text-white">
                 Logout

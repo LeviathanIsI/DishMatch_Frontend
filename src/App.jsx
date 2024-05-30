@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import MyRecipes from "./pages/MyRecipes";
 import Matching from "./pages/Matching";
 import MatchedRecipes from "./pages/MatchedRecipes";
+import CreateRecipe from "./pages/CreateRecipe";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
@@ -40,6 +41,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <MatchedRecipes />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/create-recipe"
+              element={
+                <ProtectedRoute>
+                  <CreateRecipe />
                 </ProtectedRoute>
               }
             />
