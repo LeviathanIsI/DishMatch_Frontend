@@ -4,18 +4,51 @@ import apiFetch from "../api/fetch";
 const Matching = () => {
   const [recipe, setRecipe] = useState(null);
   const [message, setMessage] = useState("");
+  const [savedRecipes, setSavedRecipes] = useState([]);
 
   useEffect(() => {
-    fetchRandomRecipe();
+    const initialize = async () => {
+      await fetchUserSavedRecipes();
+      await fetchRandomRecipe();
+    };
+    initialize();
   }, []);
+
+  const fetchUserSavedRecipes = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await apiFetch("/users/matched-recipes", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Fetched saved recipes:", response);
+      setSavedRecipes(response);
+    } catch (error) {
+      setMessage("Error fetching saved recipes: " + error.message);
+    }
+  };
 
   const fetchRandomRecipe = async () => {
     try {
       const response = await apiFetch("/recipes/random");
+      console.log("Fetched random recipe:", response);
       setRecipe(response);
-      setMessage(""); // Clear the message when fetching a new recipe
+      checkIfUserLikesRecipe(response);
     } catch (error) {
       setMessage("Error fetching recipe: " + error.message);
+    }
+  };
+
+  const checkIfUserLikesRecipe = (fetchedRecipe) => {
+    console.log("Checking if user likes recipe:", fetchedRecipe);
+    const alreadyLiked = savedRecipes.some(
+      (savedRecipe) => savedRecipe.creator?._id === fetchedRecipe.creator?._id
+    );
+    if (alreadyLiked) {
+      setMessage("You already like a recipe by this creator!");
+    } else {
+      setMessage("");
     }
   };
 
@@ -31,15 +64,16 @@ const Matching = () => {
         body: JSON.stringify({ recipeId: recipe._id }),
       });
       setMessage("Recipe added to your saved recipes!");
-      fetchRandomRecipe();
+      await fetchUserSavedRecipes(); // Refresh saved recipes after adding
+      await fetchRandomRecipe();
     } catch (error) {
       setMessage("Error adding recipe: " + error.message);
     }
   };
 
-  const handlePass = () => {
-    fetchRandomRecipe();
-    setMessage(""); // Clear the message when passing a recipe
+  const handlePass = async () => {
+    setMessage(""); // Clear message before fetching a new recipe
+    await fetchRandomRecipe();
   };
 
   return (
