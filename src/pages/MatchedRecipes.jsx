@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import apiFetch from '../api/fetch';
+import React, { useState, useEffect } from "react";
+import apiFetch from "../api/fetch";
 
 const MatchedRecipes = () => {
   const [recipes, setRecipes] = useState([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetchMatchedRecipes();
@@ -11,15 +11,10 @@ const MatchedRecipes = () => {
 
   const fetchMatchedRecipes = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await apiFetch('/users/matched-recipes', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await apiFetch("/users/matched-recipes");
       setRecipes(response);
     } catch (error) {
-      setMessage('Error fetching matched recipes: ' + error.message);
+      setMessage("Error fetching matched recipes: " + error.message);
     }
   };
 
@@ -32,8 +27,10 @@ const MatchedRecipes = () => {
           <div key={recipe._id} className="card p-4">
             <h3 className="card-title">{recipe.name}</h3>
             <p>{recipe.cuisine}</p>
-            <p>{recipe.ingredients.join(', ')}</p>
-            <p>Created by: {recipe.creator ? recipe.creator.username : 'Unknown'}</p>
+            <p>{recipe.ingredients.join(", ")}</p>
+            <p>
+              Created by: {recipe.creator ? recipe.creator.username : "Unknown"}
+            </p>
           </div>
         ))}
       </div>

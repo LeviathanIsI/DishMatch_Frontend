@@ -7,25 +7,22 @@ const CreateRecipe = () => {
   const [ingredients, setIngredients] = useState("");
   const [description, setDescription] = useState("");
   const [timeToMake, setTimeToMake] = useState("");
-  const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("cuisine", cuisine);
-    formData.append("ingredients", ingredients);
-    formData.append("description", description);
-    formData.append("timeToMake", timeToMake);
-    if (image) {
-      formData.append("image", image);
-    }
+    const recipeData = {
+      name,
+      cuisine,
+      ingredients,
+      description,
+      timeToMake,
+    };
 
     try {
-      await apiFetch("/recipes/create", {
+      const response = await apiFetch("/recipes/create", {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(recipeData),
       });
       setMessage("Recipe created successfully!");
       setName("");
@@ -33,7 +30,6 @@ const CreateRecipe = () => {
       setIngredients("");
       setDescription("");
       setTimeToMake("");
-      setImage(null);
     } catch (error) {
       setMessage("Error creating recipe: " + error.message);
     }
@@ -48,7 +44,7 @@ const CreateRecipe = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
+            placeholder="Recipe Name"
             required
             className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
           />
@@ -58,7 +54,7 @@ const CreateRecipe = () => {
             type="text"
             value={cuisine}
             onChange={(e) => setCuisine(e.target.value)}
-            placeholder="Cuisine"
+            placeholder="Cuisine (Italian, Mexican, etc)"
             required
             className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
           />
@@ -88,15 +84,8 @@ const CreateRecipe = () => {
             type="text"
             value={timeToMake}
             onChange={(e) => setTimeToMake(e.target.value)}
-            placeholder="Time to Make"
+            placeholder="Time to Make (e.g. 30 minutes)"
             required
-            className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
-          />
-        </div>
-        <div className="input-field">
-          <input
-            type="file"
-            onChange={(e) => setImage(e.target.files[0])}
             className="w-full p-2 border rounded bg-gray-800 text-gray-200 placeholder-gray-500 focus:border-yellow-500"
           />
         </div>
