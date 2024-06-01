@@ -1,41 +1,101 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const { isAuthenticated, username, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleLogout = () => {
     logout();
     navigate("/login"); // Redirect to the login page after logout
   };
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between">
+      <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-lg">
-          <Link to="/">DishMatch</Link>
+          <Link to="/matching">DishMatch</Link>
         </div>
-        <div className="flex space-x-4">
-          <Link to="/myrecipes" className="text-white">
-            My Recipes
-          </Link>
-          <Link to="/matching" className="text-white">
-            Matching
-          </Link>
-          <Link to="/matched-recipes" className="text-white">
-            Matched Recipes
-          </Link>
+        <div className="flex space-x-4 items-center">
           {isAuthenticated ? (
             <>
-              <Link to="/create-recipe" className="text-white">
-                Create Recipe
-              </Link>
               <span className="text-white">
                 Welcome,{" "}
                 <span className="font-bold text-yellow-500">{username}</span>
               </span>
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  className="text-white focus:outline-none border border-gray-400 p-1 rounded hover:bg-gray-700"
+                  onClick={toggleDropdown}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+                    <Link
+                      to="/myrecipes"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      My Recipes
+                    </Link>
+                    <Link
+                      to="/matched-recipes"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Matched Recipes
+                    </Link>
+                    <Link
+                      to="/create-recipe"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Create Recipe
+                    </Link>
+                    <Link
+                      to="/preferences"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Preferences
+                    </Link>
+                  </div>
+                )}
+              </div>
               <button onClick={handleLogout} className="text-white">
                 Logout
               </button>
