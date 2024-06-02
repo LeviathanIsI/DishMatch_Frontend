@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { GoogleLogin } from "@react-oauth/google";
 import apiFetch from "../api/fetch";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,22 +31,24 @@ const Login = () => {
     }
   };
 
-  const handleLoginSuccess = async (response) => {
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
     try {
-      const res = await apiFetch("/auth/google", {
+      const response = await apiFetch("/users/auth/google", {
         method: "POST",
-        body: JSON.stringify({ token: response.credential }),
+        body: JSON.stringify({ token: credentialResponse.credential }),
       });
-      const { token, username } = res;
-      login(token, username);
-      navigate("/");
+      localStorage.setItem("token", response.token);
+      login(response.token, response.username);
+      navigate("/myrecipes");
     } catch (error) {
-      console.error("Google login failed:", error);
+      setMessageType("error");
+      setMessage("Google login failed: " + error.message);
     }
   };
 
-  const handleLoginFailure = (response) => {
-    console.error("Google login failed:", response);
+  const handleGoogleLoginFailure = (error) => {
+    setMessageType("error");
+    setMessage("Google login failed: " + error.error);
   };
 
   return (
@@ -91,9 +93,8 @@ const Login = () => {
       )}
       <div className="mt-4">
         <GoogleLogin
-          onSuccess={handleLoginSuccess}
-          onError={handleLoginFailure}
-          ux_mode="popup"
+          onSuccess={handleGoogleLoginSuccess}
+          onFailure={handleGoogleLoginFailure}
         />
       </div>
     </div>
