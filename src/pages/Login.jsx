@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { GoogleLogin } from "@react-oauth/google";
 import apiFetch from "../api/fetch";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +29,24 @@ const Login = () => {
       setMessageType("error");
       setMessage("Error authenticating user: " + error.message);
     }
+  };
+
+  const handleLoginSuccess = async (response) => {
+    try {
+      const res = await apiFetch("/auth/google", {
+        method: "POST",
+        body: JSON.stringify({ token: response.credential }),
+      });
+      const { token, username } = res;
+      login(token, username);
+      navigate("/");
+    } catch (error) {
+      console.error("Google login failed:", error);
+    }
+  };
+
+  const handleLoginFailure = (response) => {
+    console.error("Google login failed:", response);
   };
 
   return (
@@ -70,6 +89,13 @@ const Login = () => {
           {message}
         </p>
       )}
+      <div className="mt-4">
+        <GoogleLogin
+          onSuccess={handleLoginSuccess}
+          onError={handleLoginFailure}
+          ux_mode="popup"
+        />
+      </div>
     </div>
   );
 };

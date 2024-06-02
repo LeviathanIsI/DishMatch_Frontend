@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { GoogleLogin } from "@react-oauth/google";
 import apiFetch from "../api/fetch";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +33,24 @@ const Register = () => {
       setMessageType("error");
       setMessage("Error registering user: " + error.message);
     }
+  };
+
+  const handleRegisterSuccess = async (response) => {
+    try {
+      const res = await apiFetch("/auth/google", {
+        method: "POST",
+        body: JSON.stringify({ token: response.credential }),
+      });
+      const { token, username } = res;
+      login(token, username);
+      navigate("/");
+    } catch (error) {
+      console.error("Google registration failed:", error);
+    }
+  };
+
+  const handleRegisterFailure = (response) => {
+    console.error("Google registration failed:", response);
   };
 
   return (
@@ -84,6 +103,12 @@ const Register = () => {
           {message}
         </p>
       )}
+      <div className="mt-4">
+        <GoogleLogin
+          onSuccess={handleRegisterSuccess}
+          onError={handleRegisterFailure}
+        />
+      </div>
     </div>
   );
 };
