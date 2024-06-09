@@ -3,29 +3,30 @@ import React, { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || ""
+  );
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      console.log("Decoded Token:", decodedToken);
-      setUsername(decodedToken.username);
-      setIsAuthenticated(true);
-    }
+    setIsAuthenticated(!!localStorage.getItem("token"));
+    setUsername(localStorage.getItem("username") || "");
   }, []);
 
   const login = (token, username) => {
     localStorage.setItem("token", token);
-    setUsername(username);
+    localStorage.setItem("username", username);
     setIsAuthenticated(true);
+    setUsername(username);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    setUsername("");
+    localStorage.removeItem("username");
     setIsAuthenticated(false);
+    setUsername("");
   };
 
   return (

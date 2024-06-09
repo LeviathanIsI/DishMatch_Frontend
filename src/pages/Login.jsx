@@ -39,7 +39,7 @@ const Login = () => {
       });
       localStorage.setItem("token", response.token);
       login(response.token, response.username);
-      navigate("/myrecipes");
+      navigate("/matching");
     } catch (error) {
       setMessageType("error");
       setMessage("Google login failed: " + error.message);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import apiFetch from "../api/fetch";
 
 const MatchedRecipes = () => {
@@ -31,6 +32,14 @@ const MatchedRecipes = () => {
             <p>
               Created by: {recipe.creator ? recipe.creator.username : "Unknown"}
             </p>
+            <Link
+              to={`/recipe/${recipe._id}`}
+              state={{ from: "matchedrecipes" }}
+            >
+              <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2 hover:bg-blue-400">
+                View Recipe
+              </button>
+            </Link>
           </div>
         ))}
       </div>

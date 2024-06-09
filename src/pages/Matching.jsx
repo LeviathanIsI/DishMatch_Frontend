@@ -78,35 +78,37 @@ const Matching = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="flex flex-col items-center space-y-4 bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl mb-4 text-white">Matching Screen</h2>
+      <div className="flex flex-col items-center space-y-6 bg-gray-800 p-10 rounded-lg shadow-lg max-w-lg">
+        <h2 className="text-4xl mb-6 text-white">Matching Screen</h2>
         {recipe ? (
-          <div className="flex flex-col items-center space-y-2">
-            <h3 className="text-xl font-bold text-white">{recipe.name}</h3>
-            <p className="text-white">{recipe.cuisine}</p>
-            <p className="text-white">{recipe.ingredients.join(", ")}</p>
-            <p className="text-white">
+          <div className="flex flex-col items-center space-y-4">
+            <h3 className="text-3xl font-bold text-white">{recipe.name}</h3>
+            <p className="text-lg text-white">{recipe.cuisine}</p>
+            <p className="text-lg text-white">
+              {recipe.ingredients.join(", ")}
+            </p>
+            <p className="text-lg text-white">
               Created by: {recipe.creator ? recipe.creator.username : "Unknown"}
             </p>
           </div>
         ) : (
-          <p className="text-white">Loading...</p>
+          <p className="text-lg text-white">Loading...</p>
         )}
-        <div className="flex justify-between w-full mt-4">
+        <div className="flex justify-between w-full mt-6">
           <button
             onClick={handleMakeIt}
-            className="bg-yellow-500 text-gray-900 hover:bg-yellow-400 px-4 py-2 rounded"
+            className="bg-yellow-500 text-gray-900 hover:bg-yellow-400 px-6 py-3 rounded text-xl"
           >
             Make It
           </button>
           <button
             onClick={handlePass}
-            className="bg-teal-500 text-gray-900 hover:bg-teal-400 px-4 py-2 rounded"
+            className="bg-teal-500 text-gray-900 hover:bg-teal-400 px-6 py-3 rounded text-xl"
           >
             Pass
           </button>
         </div>
-        {message && <p className="mt-4 text-white">{message}</p>}
+        {message && <p className="mt-6 text-lg text-white">{message}</p>}
       </div>
     </div>
   );

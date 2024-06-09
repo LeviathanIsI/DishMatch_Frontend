@@ -9,6 +9,7 @@ import Matching from "./pages/Matching";
 import MatchedRecipes from "./pages/MatchedRecipes";
 import CreateRecipe from "./pages/CreateRecipe";
 import Preferences from "./pages/Preferences";
+import RecipeShow from "./pages/RecipeShow";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
@@ -58,6 +59,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Preferences />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/recipe/:id"
+              element={
+                <ProtectedRoute>
+                  <RecipeShow />
                 </ProtectedRoute>
               }
             />
