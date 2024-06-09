@@ -2,43 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-900 text-gray-200 font-sans;
+:root {
+  --color-slate-950: #0f172a;
+  --color-black: #000000;
+  --color-amber-500: #f59e0b;
+  --color-amber-400: #fbbf24;
+  --color-red-500: #ef4444;
+  --color-red-400: #f87171;
+  --color-gray-700: #374151;
 }
 
-input {
-  @apply bg-gray-800 text-gray-200 placeholder-gray-500;
+body,
+html {
+  background-color: var(--color-slate-950);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
 }
 
-input:focus {
-  @apply border-yellow-500;
+.bg-slate-950 {
+  background-color: var(--color-slate-950);
 }
 
-.btn {
-  @apply bg-yellow-500 text-gray-900 hover:bg-yellow-400;
+.bg-black {
+  background-color: var(--color-black);
 }
 
-.card {
-  @apply bg-gray-800 text-gray-200;
+.bg-amber-500 {
+  background-color: var(--color-amber-500);
 }
 
-.card-title {
-  @apply text-yellow-500;
+.bg-amber-400 {
+  background-color: var(--color-amber-400);
 }
 
-.green-text {
-  @apply text-green-500;
+.bg-red-500 {
+  background-color: var(--color-red-500);
 }
 
-.red-text {
-  @apply text-red-500;
+.bg-red-400 {
+  background-color: var(--color-red-400);
 }
 
-@keyframes moveBackground {
-  0% {
-    background-position: 0 0, 0 0, 0 0, 0 0;
-  }
-  100% {
-    background-position: 100px 100px, 100px 100px, -100px -100px, -100px -100px;
-  }
+.bg-gray-700 {
+  background-color: var(--color-gray-700);
+}
+
+.text-amber-500 {
+  color: var(--color-amber-500);
+}
+
+.text-amber-400 {
+  color: var(--color-amber-400);
+}
+
+.text-red-500 {
+  color: var(--color-red-500);
+}
+
+.text-red-400 {
+  color: var(--color-red-400);
+}
+
+.text-slate-950 {
+  color: var(--color-slate-950);
 }
