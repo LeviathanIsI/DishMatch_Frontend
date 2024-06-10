@@ -1,11 +1,68 @@
 
-### DishMatch Frontend
+### Frontend `README.md`
 
-# DishMatch Frontend
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 
-This is the frontend for the DishMatch application, built with React.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/your-repo-url">
+    <img src="https://i.imgur.com/uSgxvre.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Setup
+  <h3 align="center">DishMatch Frontend</h3>
+
+  <p align="center">
+    Frontend for the DishMatch application, built with React.
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#environment-variables">Environment Variables</a></li>
+        <li><a href="#running-the-application">Running the Application</a></li>
+      </ul>
+    </li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+The frontend for DishMatch is built with React to provide a user-friendly interface for the application.
+
+### Built With
+
+- ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+- ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+- ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
@@ -15,61 +72,26 @@ This is the frontend for the DishMatch application, built with React.
 ### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/LeviathanIsI/dishmatch_frontend.git
+   ```sh
+   git clone <repository-url>
 
 Navigate to the frontend directory:
-bash
-Copy code
 cd DishMatch/frontend
-Install the dependencies:
-bash
-Copy code
+
+### Install the dependencies:
 npm install
 Environment Variables
 Create a .env file in the root of the frontend directory and add the following environment variable:
 
-env
-Copy code
 VITE_GOOGLE_CLIENT_ID="your_google_client_id"
 Running the Application
 Start the application by running:
 
-bash
-Copy code
 npm run dev
 The application will be running on http://localhost:5173.
 
-Components
-Auth
-Login
+### License
+Distributed under the MIT License. See LICENSE for more information.
 
-src/pages/Login.jsx
-Allows users to login with email/password or Google OAuth
-Register
-
-src/pages/Register.jsx
-Allows users to register with email/password or Google OAuth
-Recipes
-MyRecipes
-
-src/pages/MyRecipes.jsx
-Displays the user's saved recipes
-Matching
-
-src/pages/Matching.jsx
-Displays a random recipe for the user to decide whether to save or pass
-RecipeDetails
-
-src/pages/RecipeDetails.jsx
-Displays detailed information about a specific recipe
-Preferences
-Preferences
-src/pages/Preferences.jsx
-Allows users to set their recipe preferences
-Navbar
-Navbar
-src/components/Navbar.jsx
-Navigation bar with links to various pages and authentication actions
-License
-This project is licensed under the MIT License.
+Contact
+Project Link: https://github.com/your-repo-url
