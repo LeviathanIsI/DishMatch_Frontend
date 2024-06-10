@@ -58,6 +58,8 @@ The frontend for DishMatch is built with React to provide a user-friendly interf
 <!-- GETTING STARTED -->
 ## Getting Started
 
+SITE URL: https://dishmatch.netlify.app/
+
 To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
