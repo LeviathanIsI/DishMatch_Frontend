@@ -1,7 +1,6 @@
 
-### Frontend `README.md`
+### DishMatch Frontend
 
-```markdown
 # DishMatch Frontend
 
 This is the frontend for the DishMatch application, built with React.
