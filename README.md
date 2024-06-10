@@ -16,7 +16,7 @@ This is the frontend for the DishMatch application, built with React.
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/LeviathanIsI/dishmatch_frontend.git)
 
 Navigate to the frontend directory:
 bash
