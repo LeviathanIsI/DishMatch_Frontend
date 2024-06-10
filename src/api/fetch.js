@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://dishmatch-635d886301c4.herokuapp.com";
+const BASE_URL = "https://dishmatch-635d886301c4.herokuapp.com/api";
 
 const apiFetch = async (endpoint, options = {}) => {
   const token = localStorage.getItem("token");
