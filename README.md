@@ -8,7 +8,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/your-repo-url">
-    <img src="https://i.imgur.com/uSgxvre.png" alt="Logo" width="80" height="80">
+    <img src="[https://i.imgur.com/uSgxvre.png](https://imgur.com/a/VaehSGq)" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">DishMatch Frontend</h3>
