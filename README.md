@@ -78,13 +78,14 @@ cd DishMatch/frontend
 
 ### Install the dependencies:
 npm install
-Environment Variables
+
+### Environment Variables
 Create a .env file in the root of the frontend directory and add the following environment variable:
 
 VITE_GOOGLE_CLIENT_ID="your_google_client_id"
-Running the Application
-Start the application by running:
 
+### Running the Application
+Start the application by running:
 npm run dev
 The application will be running on http://localhost:5173.
 
